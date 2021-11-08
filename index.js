@@ -57,9 +57,17 @@ async function run() {
         app.get('/booking', async (req, res) => {
             const email = req.query.email;
             const query = { email: email }
-            const cursor = BookingCollection.find(query);
+            const cursor = BookingCollection.find(query);       
             const booking = await cursor.toArray();
             res.json(booking);
+        })
+        //POST REVIEW DATA
+        app.post('/reviews', async (req, res) => {
+            const reviews = req.body;
+            console.log(reviews);
+            const result = await reviewCollection.insertOne(reviews);
+            // console.log(result);
+            res.json(result)
         })
         //REVIEW DATA SHOW
         app.get('/reviews', async (req, res) => {
