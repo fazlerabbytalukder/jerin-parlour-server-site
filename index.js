@@ -53,6 +53,14 @@ async function run() {
             // console.log(result);
             res.json(result)
         })
+        //GET BOOKING SPECIFIC USER DATA
+        app.get('/booking', async (req, res) => {
+            const email = req.query.email;
+            const query = { email: email }
+            const cursor = BookingCollection.find(query);
+            const booking = await cursor.toArray();
+            res.json(booking);
+        })
         //REVIEW DATA SHOW
         app.get('/reviews', async (req, res) => {
             const cursor = reviewCollection.find({});
