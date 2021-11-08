@@ -41,6 +41,14 @@ async function run() {
             const service = await servicesCollection.findOne(query);
             res.json(service);
         })
+        //POST SERVICE DATA
+        app.post('/services', async (req, res) => {
+            const service = req.body;
+            // console.log(service);
+            const result = await servicesCollection.insertOne(service);
+            // console.log(result);
+            res.json(result)
+        })
         //POST BOOKING DATA
         app.post('/booking', async (req, res) => {
             //ei comment diye dekha databackend e aise kina
