@@ -49,6 +49,12 @@ async function run() {
             // console.log(result);
             res.json(result)
         })
+        //BOOKING DATA SHOW
+        app.get('/booking', async (req, res) => {
+            const cursor = BookingCollection.find({});
+            const booking = await cursor.toArray();
+            res.send(booking);
+        })
         //POST BOOKING DATA
         app.post('/booking', async (req, res) => {
             //ei comment diye dekha databackend e aise kina
