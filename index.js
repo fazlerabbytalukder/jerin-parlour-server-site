@@ -26,6 +26,7 @@ async function run() {
         const servicesCollection = database.collection("services");
         const reviewCollection = database.collection("reviews");
         const usersCollection = database.collection("users");
+        const BookingCollection = database.collection("booking");
 
         //SERVICES DATA SHOW
         app.get('/services', async (req, res) => {
@@ -39,6 +40,18 @@ async function run() {
             const query = { _id: ObjectId(id) };
             const service = await servicesCollection.findOne(query);
             res.json(service);
+        })
+        //POST BOOKING DATA
+        app.post('/booking', async (req, res) => {
+            //ei comment diye dekha databackend e aise kina
+            // const booking = req.body;
+            // console.log(booking);
+            // res.json({message:'hello'})
+
+            const booking = req.body;
+            const result = await BookingCollection.insertOne(booking);
+            // console.log(result);
+            res.json(result)
         })
         //REVIEW DATA SHOW
         app.get('/reviews', async (req, res) => {
