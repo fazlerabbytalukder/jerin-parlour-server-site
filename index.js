@@ -134,6 +134,22 @@ async function run() {
         })
 
 
+        //UPDATE BOOKING DATA
+        app.put('/booking/:id', async (req, res) => {
+            const id = req.params.id;
+            const updateBooking = req.body;
+            const filter = { _id: ObjectId(id) };
+            const options = { upset: true };
+            const updateDoc = {
+                $set: {
+                    status: "booked"
+                },
+            };
+            const result = await BookingCollection.updateOne(filter, updateDoc, options);
+            res.json(result)
+        })
+
+
     } finally {
         // await client.close();
     }
