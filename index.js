@@ -149,6 +149,14 @@ async function run() {
             res.json(result)
         })
 
+        //DELETE booking data from all booking
+        app.delete('/booking/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id:ObjectId(id) };
+            const result = await BookingCollection.deleteOne(query);
+            res.json(result);
+        })
+
 
     } finally {
         // await client.close();
